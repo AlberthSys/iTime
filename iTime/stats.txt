@@ -1,0 +1,3 @@
+APOLONIA;LAPIEDRA;Av.Madrid;1Z;99204339;40;10;1;24;FreeDay;true;true;Finance;Director
+CLAUDIA;BABEL;Av.Denia;484387J;4838437;40;24;0;4;Not take yet;false;true;C;B;Finance
+KENDRA;SUNDERLAND;Av.Alcoy;3272827H;38272372;25;13;1;15;CriticalHealthy;true;true;K;S;Marketing
