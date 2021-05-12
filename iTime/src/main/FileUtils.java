@@ -87,7 +87,7 @@ public class FileUtils {
                         (new FileWriter("stats.txt", true)));
                 for (Person e: myList) {
                     if (e instanceof Manager) {
-                        Person aux = (Manager) e;
+                        Person aux = e;
                         line = e.getName() + ";" + e.getSurname() + ";" + e.getAddress()
                                 + ";" + e.getDocId() + ";" + e.getNumberPhone() + ";" +
                                 e.getCalendar().getHiredHours() + ";" +

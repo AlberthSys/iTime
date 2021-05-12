@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Management {
     ArrayList<Person> myList = new ArrayList();
+
     Calendar c= new Calendar(40,0,0,0,"",false,false);
     Manager aux = new Manager("APOLONIA", "LAPIEDRA", "Av.Madrid",
             "1Z", 99204339, c,"Finance", "Director");
@@ -18,7 +19,26 @@ public class Management {
     public void execute() {
         boolean run = false;
         FileUtils f = new FileUtils();
-        myList = f.loadStats();
+        ArrayList<Person> managers = f.loadStats();
+        if (managers.size() > 0){
+            for (int i = 0; i < managers.size(); i++){
+                boolean search = false;
+                for (int x = 0; x < myList.size(); x++){
+                    if (managers.get(x).getDocId().equals(managers.get(i).getDocId())){
+                        search = true;
+                    }
+                }
+                if (!search) {
+                    myList.add(managers.get(i));
+                }
+            }
+            myList = f.loadStats();
+        }
+        else{
+            myList.add(aux);
+            myList.add(aux1);
+            myList.add(aux2);
+        }
         do {
             switch (showMenu()) {
                 case "0":
@@ -124,7 +144,7 @@ public class Management {
             boolean searchedM = false;
             for (int i = 0; i < myList.size(); i++) {
                 if (myList.get(i) instanceof Manager) {
-                    if (myList.get(i).getDocId().equals(inputID)) {
+                    if (((Manager)myList.get(i)).getDocId().equals(inputID)) {
                         if (myList.get(i).worked()) {
                             System.out.println("Hours worked: " + myList.get(i).getCalendar()
                                     .hoursWorked);
@@ -161,7 +181,7 @@ public class Management {
                 if (myList.get(i) instanceof Employee) {
                     if (((Employee) myList.get(i)).getUser().equals(userPD) &&
                             ((Employee) myList.get(i)).getPassword().equals(passPD)) {
-                        System.out.print("Many hours worked?: ");
+                        System.out.println("Many hours worked?: ");
                         int hours = hh.nextInt();
                         if (myList.get(i).getCalendar().hoursWorked + hours <=
                                 myList.get(i).getCalendar().hiredHours) {
@@ -184,7 +204,7 @@ public class Management {
             boolean searchedM = false;
             for (int i = 0; i < myList.size(); i++) {
                 if (myList.get(i) instanceof Manager) {
-                    if (myList.get(i).getDocId().equals(inputID)) {
+                    if (((Manager)myList.get(i)).getDocId().equals(inputID)) {
                         System.out.print("Many hours worked?: ");
                         int hours = hh.nextInt();
                         if (myList.get(i).getCalendar().hoursWorked + hours <=
@@ -193,7 +213,7 @@ public class Management {
                             System.out.println("Registred hours");
                             searchedM = true;
                         } else {
-                            System.out.println("Not realized yet.");
+                            System.out.println("Cant registre more hours");
                             searchedM = true;
                         }
                     }
@@ -249,12 +269,12 @@ public class Management {
             } while (docID.equals(""));
             String user = "";
             do {
-                System.out.println("User: ");
+                System.out.println("User: (Required)");
                 user = ad.nextLine();
             }while(user.equals(""));
             String pass = "";
             do {
-                System.out.println("Password: ");
+                System.out.println("Password: (Required)");
                 pass = ad.nextLine();
             }while (pass.equals(""));
             System.out.println("Departament: ");
@@ -303,7 +323,7 @@ public class Management {
             System.out.print("Your Password: ");
             String passPD = tk.next();
             for (int i = 0; i < myList.size(); i++) {
-                if ((Person) myList.get(i) instanceof Employee) {
+                if (myList.get(i) instanceof Employee) {
                     if (((Employee) myList.get(i)).getUser().equals(userPD) &&
                             ((Employee) myList.get(i)).getPassword().equals(passPD)) {
                         if (myList.get(i).getCalendar().personalDay < myList.get(i)
@@ -370,10 +390,11 @@ public class Management {
             String passPD = tp.next();
             for(Person e: myList){
                 if (e instanceof Employee) {
-                    if (((Employee) e).getUser().equals(userPD) && ((Employee) e).getPassword().equals(passPD)) {
+                    if (((Employee) e).getUser().equals(userPD) && ((Employee) e).
+                            getPassword().equals(passPD)) {
                         if (e.getCalendar().getVacationDay() <
                                 e.getCalendar().getTotalVacationDays()) {
-                            System.out.println("How many days?:");
+                            System.out.print("How many days?: ");
                             int numberDay = tp.nextInt();
                             if (numberDay < e.getCalendar().getMinDaysVacation()) {
                                 System.out.println("Min days = 4");
@@ -393,9 +414,6 @@ public class Management {
                         }
                     }
                 }
-                else{
-                    System.out.println("Not found");
-                }
             }
             if (!searchV) {
                 System.out.println("Not found");
@@ -410,7 +428,7 @@ public class Management {
                     if (e.getDocId().equals(inputID)) {
                         if (e.getCalendar().getVacationDay() <
                                 e.getCalendar().getTotalVacationDays()) {
-                            System.out.println("How many days?:");
+                            System.out.print("How many days?: ");
                             int numberDay = tp.nextInt();
                             if (numberDay < e.getCalendar().getMinDaysVacation()) {
                                 System.out.println("Min days = 4");
@@ -441,7 +459,7 @@ public class Management {
         }
     }
 
-    private void viewAllEmployees(){ //CALL 5
+    private void viewAllEmployees(){ // CALL 5
         boolean itsManager = false;
         Scanner fg = new Scanner(System.in);
         System.out.println("DATA EMPLOYEES");
@@ -511,7 +529,7 @@ public class Management {
         String inputID = bb.nextLine();
         for (int i = 0; i < myList.size(); i++){
             if (myList.get(i) instanceof Manager){
-                if (myList.get(i).getDocId().equals(inputID)){
+                if (((Manager)myList.get(i)).getDocId().equals(inputID)){
                     itsManager = true;
                 }
             }
@@ -537,7 +555,7 @@ public class Management {
         String inputID = dd.nextLine();
         for (int i = 0; i < myList.size(); i++){
             if (myList.get(i) instanceof Manager){
-                if (myList.get(i).getDocId().equals(inputID)){
+                if (((Manager)myList.get(i)).getDocId().equals(inputID)){
                     itsManager = true;
                 }
             }
@@ -631,8 +649,9 @@ public class Management {
                 System.out.println("Not found");
             }
             else {
-                System.out.println(myList.get(numberChange).getSurname().toUpperCase() + ", " +
-                        myList.get(numberChange).getName().toUpperCase());
+                System.out.println(myList.get(numberChange).getSurname().
+                        toUpperCase() + ", " + myList.get(numberChange).getName().
+                        toUpperCase());
                 System.out.println("Address: " +
                         myList.get(numberChange).getAddress());
                 System.out.println("Change?: ");
