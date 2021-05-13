@@ -1,6 +1,6 @@
 APOLONIA;LAPIEDRA;Av.Madrid;1Z;99204339;40;23;0;0;;false;false;Finance;Director
 CLAUDIA;BABEL;Av.Delicioso;2390293K;49434830;40;35;1;0;Mum;true;false;C;B;Finance
-JORDI;ENP;Av.Albacete;1Y;8928232;40;0;1;0;Bank;true;false;Markting;Director
+JORDI;ENP;Av.Albacete;1Y;8928232;40;15;1;0;Bank;true;false;Markting;Director
 KENDRA;SUNDERLAND;Av.Jonia;3203209B;3229302;25;12;0;5;Not take yet;false;true;K;S;Marketing
 LILLA;SILVER;Av.Polonia;2392939G;23202392;40;34;1;15;Bad;true;true;L;S;Marketing
 SUSY;GALA;Av.Alcorcon;1T;3282374;40;0;1;20;Travel;true;true;Finance;SubDirector

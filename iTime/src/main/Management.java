@@ -8,37 +8,10 @@ import java.util.Scanner;
 public class Management {
     ArrayList<Person> myList = new ArrayList();
 
-    Calendar c= new Calendar(40,0,0,0,"",false,false);
-    Manager aux = new Manager("APOLONIA", "LAPIEDRA", "Av.Madrid",
-            "1Z", 99204339, c,"Finance", "Director");
-    Manager aux1 = new Manager("SUSY", "GALA", "Av.Alcorcon",
-            "1T", 3282374, c,"Finance", "SubDirector");
-    Manager aux2 = new Manager("JORDI", "ENP", "Av.Albacete",
-            "1Y", 8928232, c,"Markting", "Director");
-
     public void execute() {
         boolean run = false;
         FileUtils f = new FileUtils();
-        ArrayList<Person> managers = f.loadStats();
-        if (managers.size() > 0){
-            for (int i = 0; i < managers.size(); i++){
-                boolean search = false;
-                for (int x = 0; x < myList.size(); x++){
-                    if (managers.get(x).getDocId().equals(managers.get(i).getDocId())){
-                        search = true;
-                    }
-                }
-                if (!search) {
-                    myList.add(managers.get(i));
-                }
-            }
-            myList = f.loadStats();
-        }
-        else{
-            myList.add(aux);
-            myList.add(aux1);
-            myList.add(aux2);
-        }
+        myList = f.loadStats();
         do {
             switch (showMenu()) {
                 case "0":
