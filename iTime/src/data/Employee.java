@@ -1,7 +1,8 @@
-//DATA EMPLOYEE
-
 package data;
 
+/**
+ * A employee class, with getters and setters
+ */
 public class Employee extends Person{
     protected String user;
     protected String password;

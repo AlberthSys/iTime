@@ -1,5 +1,8 @@
 package data;
 
+/**
+ * Person class. employee and manager inherit from it. Implement general attributes
+ */
 public abstract class Person implements Worked{
     protected String name;
     protected String surname;

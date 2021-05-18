@@ -1,13 +1,17 @@
-//LOGIC IMPLEMENTATION
-
 package main;
 import data.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class implements all logic the program.
+ */
 public class Management {
     ArrayList<Person> myList = new ArrayList();
 
+    /**
+     * Execute the menu and start methods that user select
+     */
     public void execute() {
         boolean run = false;
         FileUtils f = new FileUtils();
@@ -59,6 +63,9 @@ public class Management {
         System.out.println("Finish process");
     }
 
+    /**
+     * @return the principal menu
+     */
     private static String showMenu(){
         Scanner gg = new Scanner(System.in);
         String inputOption = "";
@@ -80,6 +87,9 @@ public class Management {
         return inputOption;
     }
 
+    /**
+     * Show hours worked
+     */
     private void hoursRealized(){//CALL 0
         System.out.println("HOURS REALIZED");
         Scanner hh = new Scanner(System.in);
@@ -138,6 +148,9 @@ public class Management {
         }
     }
 
+    /**
+     * Add hours for employees and management
+     */
     private void addHours(){ // CALL 1
         boolean searched = false;
         Scanner hh = new Scanner(System.in);
@@ -201,6 +214,9 @@ public class Management {
         }
     }
 
+    /**
+     * This method add a new employee
+     */
     private void addEmployee(){ //CALL 2
         Scanner ad = new Scanner(System.in);
         Calendar calendar;
@@ -283,6 +299,9 @@ public class Management {
         }
     }
 
+    /**
+     * This method add a take personal days and control how many days
+     */
     private void takePersonalDay(){ // CALL 3
         boolean searched = false;
         System.out.println("TAKE A PERSONAL DAY");
@@ -348,7 +367,9 @@ public class Management {
             System.out.println("Select 1 or 2");
         }
     }
-
+    /**
+     * This method add a take vacations and control how many days
+     */
     private void takeVacation(){ // CALL 4
         System.out.println("TAKE VACATIONS");
         boolean searchV = false;
@@ -432,6 +453,9 @@ public class Management {
         }
     }
 
+    /**
+     * Show stats about all employees
+     */
     private void viewAllEmployees(){ // CALL 5
         boolean itsManager = false;
         Scanner fg = new Scanner(System.in);
@@ -462,6 +486,9 @@ public class Management {
         }
     }
 
+    /**
+     * This method show how many hours worked all employees
+     */
     private void lookHoursWorkedALlEmployees(){ // CALL 6
         Scanner aa = new Scanner(System.in);
         System.out.println("LOOK HOURS REALIZED");
@@ -494,6 +521,9 @@ public class Management {
         }
     }
 
+    /**
+     * This method show how many free days
+     */
     private void seeFreeDays() { // CALL 7
         boolean itsManager = false;
         Scanner bb = new Scanner(System.in);
@@ -520,6 +550,9 @@ public class Management {
         }
     }
 
+    /**
+     * This method show vacations
+     */
     private void seeVacation(){ //CALL 8
         boolean itsManager = false;
         Scanner dd = new Scanner(System.in);
@@ -546,6 +579,9 @@ public class Management {
         }
     }
 
+    /**
+     * With this method can delete a employee
+     */
     private void removeEmployee(){ // CALL 9
         boolean itsManager = false;
         Scanner ff = new Scanner(System.in);
@@ -591,6 +627,9 @@ public class Management {
         }
     }
 
+    /**
+     * This method changed a data
+     */
     private void configDataPerson(){ //CALL 10
         int numberChange = -1;
         int auxPhone = 0;

@@ -2,6 +2,9 @@
 
 package data;
 
+/**
+ * Manager class. directors and deputy directors inherited from person
+ */
 public class Manager extends Person{
     protected String area;
     protected String level;

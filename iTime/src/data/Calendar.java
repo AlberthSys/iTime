@@ -1,6 +1,8 @@
-//CALENDAR FOR EMPLOYEES
 package data;
 
+/**
+ * Calendar for all person in business
+ */
 public class Calendar {
     public final int totalPersonalDays = 2;
     public final int totalVacationDays = 30;

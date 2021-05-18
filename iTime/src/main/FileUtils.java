@@ -4,10 +4,12 @@ package main;
 
 import data.*;
 import data.Calendar;
-
 import java.io.*;
 import java.util.*;;
 
+/**
+ * This class save and load stats
+ */
 public class FileUtils {
     public ArrayList<Person> loadStats() {
         ArrayList<Person> myList = new ArrayList<>();
