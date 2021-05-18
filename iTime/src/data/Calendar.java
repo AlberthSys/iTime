@@ -4,16 +4,16 @@ package data;
  * Calendar for all person in business
  */
 public class Calendar {
-    public final int totalPersonalDays = 2;
-    public final int totalVacationDays = 30;
-    public final int minDaysVacation = 3;
-    public int hiredHours;
-    public int hoursWorked;
-    public int personalDay;
-    public int vacationDay;
-    public String reasonPersonalDay;
-    public boolean takeDaysP;
-    public boolean takeVacation;
+    public final int totalPersonalDays = 2; //Total personal days that employees and managers can take it
+    public final int totalVacationDays = 30;//Total vacations days that employees and managers can take it
+    public final int minDaysVacation = 3;//Min vacations days that employees and managers can take it
+    public int hiredHours;// hours agreed in contract
+    public int hoursWorked;// hours worked
+    public int personalDay;// count how many personal days
+    public int vacationDay;// count how many vacations days
+    public String reasonPersonalDay; // save the reason for the absence from work
+    public boolean takeDaysP;// check if it has taken days
+    public boolean takeVacation;//check if it has taken days
 
     public Calendar(int hiredHours, int hoursWorked, int personalDay,
                     int vacationDay, String reasonPersonalDay, boolean takeDaysP,
