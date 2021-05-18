@@ -1,6 +1,7 @@
 package main;
 import data.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -168,14 +169,22 @@ public class Management {
                     if (((Employee) myList.get(i)).getUser().equals(userPD) &&
                             ((Employee) myList.get(i)).getPassword().equals(passPD)) {
                         System.out.println("Many hours worked?: ");
-                        int hours = hh.nextInt();
-                        if (myList.get(i).getCalendar().hoursWorked + hours <=
-                                myList.get(i).getCalendar().hiredHours) {
-                            myList.get(i).getCalendar().addHours(hours);
-                            System.out.println("Registred hours");
+                        int hours = 0;
+                        try {
+                            hours = hh.nextInt();
+                            if (myList.get(i).getCalendar().hoursWorked + hours <=
+                                    myList.get(i).getCalendar().hiredHours) {
+                                myList.get(i).getCalendar().addHours(hours);
+                                System.out.println("Registred hours");
+                                searched = true;
+                            }
+                            else {
+                                System.out.println("You cannot register more hours " +
+                                        "than contracted");
+                            }
+                        }catch (Exception e){
+                            System.out.println("Not save. Try again: " + e);
                             searched = true;
-                        } else {
-                            System.out.println("You cannot register more hours than contracted");
                         }
                     }
                 }
@@ -190,17 +199,32 @@ public class Management {
             boolean searchedM = false;
             for (int i = 0; i < myList.size(); i++) {
                 if (myList.get(i) instanceof Manager) {
-                    if (((Manager)myList.get(i)).getDocId().equals(inputID)) {
+                    if ((myList.get(i)).getDocId().equals(inputID)) {
                         System.out.print("Many hours worked?: ");
-                        int hours = hh.nextInt();
-                        if (myList.get(i).getCalendar().hoursWorked + hours <=
-                                myList.get(i).getCalendar().hiredHours) {
-                            myList.get(i).getCalendar().addHours(hours);
-                            System.out.println("Registred hours");
+                        int hours = 0;
+                        try {
+                            hours = hh.nextInt();
+                            if (myList.get(i).getCalendar().hoursWorked + hours <=
+                                    myList.get(i).getCalendar().hiredHours) {
+                                myList.get(i).getCalendar().addHours(hours);
+                                System.out.println("Registred hours");
+                                searchedM = true;
+                            }
+                            else {
+                                System.out.println("Cant registre more hours");
+                                searchedM = true;
+                            }
+                        }catch (InputMismatchException e){
                             searchedM = true;
-                        } else {
-                            System.out.println("Cant registre more hours");
+                            System.out.println("Not save. Try again: " + "Can't convert");
+                        }
+                        catch (NumberFormatException n){
                             searchedM = true;
+                            System.out.println("Not save. Try again: " + n.getMessage());
+                        }
+                        catch (Exception e){
+                            searchedM = true;
+                            System.out.println("Not save. Try again: " + e.getMessage());
                         }
                     }
                 }
@@ -289,8 +313,8 @@ public class Management {
             calendar = new Calendar(hours, 0, 0, 0,
                     "Not take yet", false, false);
 
-            e = new Employee(name.toUpperCase(), surname.toUpperCase(), address, docID.toUpperCase(),
-                    auxPhone, calendar, user, pass, dep);
+            e = new Employee(name.toUpperCase(), surname.toUpperCase(), address,
+                    docID.toUpperCase(), auxPhone, calendar, user, pass, dep);
             System.out.println("Registred employee");
             myList.add(e);
         }
@@ -395,7 +419,8 @@ public class Management {
                                 searchV = true;
                             } else if (e.getCalendar().getVacationDay() + numberDay >
                                     e.getCalendar().getTotalVacationDays()) {
-                                System.out.println("Only can take 30 days for year of work");
+                                System.out.println("Only can take 30 days for " +
+                                        "year of work");
                                 searchV = true;
                             } else {
                                 e.getCalendar().takeVacation(numberDay);
@@ -532,7 +557,7 @@ public class Management {
         String inputID = bb.nextLine();
         for (int i = 0; i < myList.size(); i++){
             if (myList.get(i) instanceof Manager){
-                if (((Manager)myList.get(i)).getDocId().equals(inputID)){
+                if ((myList.get(i)).getDocId().equals(inputID)){
                     itsManager = true;
                 }
             }
